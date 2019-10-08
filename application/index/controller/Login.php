@@ -35,7 +35,7 @@ class Login extends Base
             }
             $data['grade'] = 1;
             $data['channelID'] = 5454;
-            $data['visual'] = 3;
+            $data['visual'] = 15;  // 这里存的是权限1111的十进制，
             $erjz = decbin($data['visual']);
             $erjz = sprintf("%04d", $erjz);
             $urls = jumpUrl();
