@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>代理列表</title>/static/css/login
+ {css href="/static/layui/css/layui.css, /static/css/login/admin.css" /}
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">后台 - {$Think.session.admin['grade']} 级</div>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="/static/img/avater.jpg" class="layui-nav-img">
+          {$Think.session.admin.username}
+        </a>
+        <!--
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+ 		-->
+      </li>
+      <li class="layui-nav-item"><a href="/index.php/index/Login/loginout">退出</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">报表数据</a>
+          <dl class="layui-nav-child">
+            {eq name="Think.session.admin['erjz'][0]" value="1" }
+            <dd><a href="/index.php/index/index/index" class="sjj" id="iagt">代理列表</a></dd>
+            {/eq}
+            {eq name="Think.session.admin['erjz'][1]" value="1" }
+            <dd><a href="/index.php/index/user" class="sjj" id="iwjlb">玩家列表</a></dd>
+            {/eq}
+            {eq name="Think.session.admin['erjz'][2]" value="1" }
+            <dd><a href="/index.php/index/recharge" class="sjj" id="iczbb">充值报表</a></dd>
+            {/eq}
+            {eq name="Think.session.admin['erjz'][3]" value="1"}
+            <dd><a href="/index.php/index/report" class="sjj" id="izbb">总报表</a></dd>
+            {/eq}
+          </dl>
+        </li>
+        <!--
+        <li class="layui-nav-item">
+          <a href="javascript:;">个人信息</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">个人信息</a></dd>
+          </dl>
+        </li>
+		-->
+      </ul>
+    </div>
+  </div>
+   {js href="/static/layui/layui.js, /static/js/publicf.js" /}
+  <!-- 主体内容 -->
+      <div class="layui-body" id="LAY_app_body">
+        <div class="layadmin-tabsbody-item layui-show">
+          <iframe src="/index.php/index/Index/index" frameborder="0" class="layadmin-iframe"></iframe>
+        </div>
+      </div> 
+
+  
+</div>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element,$ = layui.jquery;
+  var url = window.location.href;
+  arr=url.split('index.php');
+  //console.log(arr[1]);
+  if(arr[1] == undefined || arr[1] == '/index/index/index'){
+      $('.sjj').removeClass('layui-this');
+      $('#iagt').addClass('layui-this');
+  }else if(arr[1].indexOf("user") != -1){
+  	  $('.sjj').removeClass('layui-this');
+      $('#iwjlb').addClass('layui-this');
+  }else if(arr[1].indexOf("recharge") != -1){
+  	  $('.sjj').removeClass('layui-this');
+      $('#iczbb').addClass('layui-this');
+  }else if(arr[1].indexOf("report") != -1){
+  	  $('.sjj').removeClass('layui-this');
+      $('#izbb').addClass('layui-this');
+  }
+});
+
+</script>
+</body>
+</html>
